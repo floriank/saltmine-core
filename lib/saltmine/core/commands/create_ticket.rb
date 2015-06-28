@@ -1,8 +1,8 @@
 module Saltmine
   module Core
     module Commands
-      class CreateProject < Abstract
-        creates :project
+      class CreateTicket < Abstract
+        creates :ticket
       end
     end
   end

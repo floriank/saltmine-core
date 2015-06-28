@@ -2,7 +2,24 @@ module Saltmine
   module Core
     module Commands
       class Abstract
-        def self.deals_with(obj_sym)
+
+        def call
+          send @@method
+        end
+
+        def initialize(options = {})
+          @options = options
+        end
+
+        def create
+          repo.create object.new(@options)
+        end
+
+        def update
+
+        end
+
+        def self.define_methods(obj_sym)
           obj_name, repo_name = names_from obj_sym
           define_method :object do
             Saltmine::Core.const_get(obj_name)
@@ -13,18 +30,20 @@ module Saltmine
           end
         end
 
-        def initialize(options = {})
-          @options = options
-        end
-
-        def call
-          repo.create(object.new(@options))
-        end
-
         def self.names_from(string)
           name = string.capitalize
           repo_name = "#{name}Repository"
           [name, repo_name]
+        end
+
+        def self.creates(obj_sym)
+          @@method = :create
+          define_methods(obj_sym)
+        end
+
+        def self.updates(obj_sym)
+          @@method = :update
+          define_methods(obj_sym)
         end
       end
     end
