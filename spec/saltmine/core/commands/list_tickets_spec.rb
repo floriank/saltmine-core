@@ -10,7 +10,6 @@ describe Saltmine::Core::Commands::ListTickets do
   let(:create_project) { Saltmine::Core::Commands::CreateProject }
 
   describe '#with_project' do
-
     it 'should provide a set of tickets for a project with tickets' do
       3.times do |n|
         create_ticket.new(subject: "foo#{n}", project_id: project.id).call
@@ -31,7 +30,7 @@ describe Saltmine::Core::Commands::ListTickets do
       expect(cmd.for_project).to be_empty
     end
 
-    it "should provide a list of tickets w/o a project" do
+    it 'should provide a list of tickets w/o a project' do
       10.times do |n|
         create_ticket.new(subject: "bar#{n}", project_id: nil).call
       end

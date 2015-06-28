@@ -12,7 +12,6 @@ RSpec.configure do |conf|
     ].each do |repo|
       repo.all.each { |item| repo.delete item }
     end
-
   end
 end
 
@@ -20,7 +19,6 @@ Lotus::Model.configure do
   adapter type: :memory, uri: 'memory://spec/db/saltmine-core'
 
   mapping do
-
     collection :saltmine_projects do
       entity Saltmine::Core::Project
       repository Saltmine::Core::ProjectRepository

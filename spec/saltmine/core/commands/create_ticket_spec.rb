@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Saltmine::Core::Commands::CreateTicket do
-
   let(:cmd) { described_class.new options }
   let(:options) { { subject: 'Foo', description: 'bar' } }
 
@@ -12,5 +11,4 @@ describe Saltmine::Core::Commands::CreateTicket do
     expect(ticket.description).to eql 'bar'
     expect(ticket.id).not_to be_nil
   end
-
 end

@@ -2,7 +2,6 @@ module Saltmine
   module Core
     module Commands
       class Crud
-
         def call
           send @@method
         end
@@ -16,7 +15,6 @@ module Saltmine
         end
 
         def update
-
         end
 
         def self.define_methods(obj_sym)
