@@ -1,7 +1,7 @@
 module Saltmine
   module Core
     module Commands
-      class Abstract
+      class Crud
 
         def call
           send @@method

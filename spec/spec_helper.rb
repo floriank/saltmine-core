@@ -2,6 +2,19 @@ require 'bundler/setup'
 Bundler.setup
 
 require 'saltmine/core'
+require 'pry'
+
+RSpec.configure do |conf|
+  conf.before(:each) do
+    [
+      Saltmine::Core::TicketRepository,
+      Saltmine::Core::ProjectRepository
+    ].each do |repo|
+      repo.all.each { |item| repo.delete item }
+    end
+
+  end
+end
 
 Lotus::Model.configure do
   adapter type: :memory, uri: 'memory://spec/db/saltmine-core'

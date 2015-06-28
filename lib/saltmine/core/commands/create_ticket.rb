@@ -1,7 +1,7 @@
 module Saltmine
   module Core
     module Commands
-      class CreateTicket < Abstract
+      class CreateTicket < Crud
         creates :ticket
       end
     end

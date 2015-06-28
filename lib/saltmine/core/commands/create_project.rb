@@ -1,7 +1,7 @@
 module Saltmine
   module Core
     module Commands
-      class CreateProject < Abstract
+      class CreateProject < Crud
         creates :project
       end
     end
