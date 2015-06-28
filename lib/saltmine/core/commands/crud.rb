@@ -2,8 +2,14 @@ module Saltmine
   module Core
     module Commands
       class Crud
+        class << self
+          attr_accessor :method
+        end
+
+        attr_accessor :options
+
         def call
-          send @@method
+          send self.class.method
         end
 
         def initialize(options = {})
@@ -15,6 +21,13 @@ module Saltmine
         end
 
         def update
+          attributes = @options.dup
+          entity = repo.find attributes.delete(:id)
+          raise Saltmine::Core::Error::EntityNotFound if entity.nil?
+          attributes.each do |attr, value|
+            entity.send "#{attr}=", value if entity.respond_to? "#{attr}="
+          end
+          repo.update entity
         end
 
         def self.define_methods(obj_sym)
@@ -35,12 +48,12 @@ module Saltmine
         end
 
         def self.creates(obj_sym)
-          @@method = :create
+          self.method = :create
           define_methods(obj_sym)
         end
 
         def self.updates(obj_sym)
-          @@method = :update
+          self.method = :update
           define_methods(obj_sym)
         end
       end

@@ -3,6 +3,7 @@ require 'saltmine/core/version'
 require 'saltmine/core/entities'
 require 'saltmine/core/commands'
 require 'saltmine/core/repositories'
+require 'saltmine/core/error'
 
 module Saltmine
   module Core
