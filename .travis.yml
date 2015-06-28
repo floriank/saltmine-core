@@ -3,7 +3,5 @@ rvm:
   - 2.0.0-p645
   - 2.1.6
   - 2.2.2
-  - jruby-1.7.12
-  - jruby-head
 before_install: gem install bundler -v 1.10.5
 script: bundle exec rspec
