@@ -1,3 +1,9 @@
-class Saltmine::Core::Project
-  attr_accessor :title
+module Saltmine
+  module Core
+    class Project
+      include Lotus::Entity
+
+      attributes :title, :description
+    end
+  end
 end
